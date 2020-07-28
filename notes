@@ -1,3 +1,10 @@
 Command Line List 
 
-1. Run Server -> npm run Server
+1. Run Server -> npm run server
+
+
+Models 
+1. User (has many articles)
+2. User Article 
+3. Article
+4. Site 
