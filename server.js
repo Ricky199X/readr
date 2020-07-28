@@ -9,12 +9,6 @@ const articles = require('./routes/api/articles')
 const sites = require('./routes/api/sites')
 
 
-// Use Routes
-app.use('./api/users', users)
-app.use('./api/articles', articles)
-app.use('./api/sites', sites)
-
-
 // initialize express 
 const app = express()
 
@@ -35,4 +29,8 @@ mongoose
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`server started on port ${port}`))
 
+// Use Routes
+app.use('./api/users', users)
+// app.use('./api/articles', articles)
+// app.use('./api/sites', sites)
 
