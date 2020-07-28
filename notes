@@ -4,7 +4,7 @@ Command Line List
 
 
 Models 
-1. User (has many articles)
+1. User (has many articles) - DONE
 2. User Article 
-3. Article
-4. Site 
+3. Article - DONE
+4. Site - DONE
