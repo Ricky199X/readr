@@ -1,11 +1,7 @@
 // Bring in Mongoose 
 const mongoose = require('mongoose')
 
-// // Mongo DB Config
-// const db = require('./config/keys').mongoURI
-
-// connect to Mongo using mongoose
-
+// connect to Mongo DB using mongoose
 const connectDB = async () => {
     try {
         const connection = await mongoose.connect(process.env.MONGO_URI, {

@@ -2,6 +2,9 @@ const express = require('express')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 
+// Instantiate Morgan - this logs requests to the terminal (similar to rails)
+const morgan = require('morgan')
+
 // Load config.env file
 dotenv.config({ path: './config/config.env' })
 
@@ -10,6 +13,11 @@ const app = express()
 
 // run Connect DB to connect to your host 
 connectDB()
+
+// if environment = development, run request logs 
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
 
 // We may deploy to heroku - so we need to set the env variable 
 const PORT = process.env.PORT || 5000

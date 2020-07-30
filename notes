@@ -1,6 +1,7 @@
 Command Line List 
 
-1. Run Server -> npm run server
+1. Run Development Environment -> npm run dev
+2. Run production environment -> npm run start
 
 
 Models 
