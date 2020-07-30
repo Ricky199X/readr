@@ -27,5 +27,7 @@ app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on 
 
 // Routes
 app.use('/users', require('./routes/users'))
+app.use('/sites', require('./routes/sites'))
+app.use('/articles', require('./routes/articles'))
 
 
