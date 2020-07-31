@@ -1,11 +1,29 @@
 const express = require('express')
 const router = express.Router()
 
+// User model
+const User = require('../models/User')
+// const { response } = require('express')
+// console.log(new User({ name: "ricky", password: "test" }))
+
 // Routes 
 // @route GET /users -> gets all users in the database
-
 router.get('/', (req, response) => {
-    response.send('Users')
+    User.find()
+        .then(users => response.json(users))
+
+})
+
+// @route POST /users -> create a new user and add to the database
+
+router.post('/', (req, response) => {
+    // create a new user object - pass thru the required params
+    const newUser = new User({
+        name: req.body.name,
+        password: req.body.password
+    })
+    // save the new user in memory - save to DB - then give us back the user
+    newUser.save().then(user => response.json(user))
 })
 
 
