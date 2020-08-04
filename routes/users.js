@@ -3,31 +3,39 @@ const router = express.Router()
 
 // User model
 const User = require('../models/User')
-const { response } = require('express')
 
-// console.log(new User({ userName: "ricky", password: "test" }))
-// console.log(new User({ userName: "another user", password: "another test" }))
+
 
 // ----- Routes -----
 // @route GET /users -> gets all users in the database
-router.get('/', (req, response) => {
-    User.find()
-        .then(users => response.json(users))
-
+router.get('/', async (req, res) => {
+    try {
+        const users = await User.find()
+        res.json()
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
 
-// @route POST /users -> create a new user and add to the database
-router.post('/', (req, response) => {
-    // console.log(req)
-    // create a new user object - pass thru the required params
-    const newUser = new User({
+// @route GET /users/:id -> gets one user in the database
+router.get('/:id', (req, res) => {
+    res.send(req.params.id)
+})
+
+
+// @route POST /users -> adds new instance of a user to the database
+router.post('/', async (req, res) => {
+    const user = new User({
         userName: req.body.userName,
         password: req.body.password
     })
 
-    console.log(newUser)
-    // save the new user in memory - save to DB - then give us back the user
-    newUser.save().then(user => response.json(user))
+    try {
+        const newUser = await user.save()
+        res.status(201).json(newUser)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 
 

@@ -11,3 +11,19 @@ Content-type: application/json
     "source": "android central",
     "comments": 10
 }
+
+###
+
+GET http://localhost:3000/users
+
+###
+POST http://localhost:3000/users
+Content-type: application/json
+
+{
+    "userName": "Ricky",
+    "password": "password"
+}
+
+###
+GET http://localhost:3000/users/1
