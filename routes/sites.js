@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
 })
 
 // @route GET /sites/:id -> gets one site in the database
-router.get('/:id', (req, res) => {
-    res.send(req.params.id)
+router.get('/:id', getSite, (req, res) => {
+    res.send(req.site)
 })
 
 
@@ -36,6 +36,21 @@ router.post('/', async (req, res) => {
         res.status(400).json({ message: err.message })
     }
 })
+
+// Middleware Function - get a site in database by ID
+async function getSite(req, res, next) {
+    let site
+    try {
+        site = await Site.findById(req.params.id)
+        if (site == null) {
+            return res.status(404).json({ message: 'Cannot find that site!' })
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+    res.site = site
+    next()
+}
 
 
 module.exports = router
