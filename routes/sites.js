@@ -5,12 +5,11 @@ const router = express.Router()
 const Site = require('../models/Site')
 const { response } = require('express')
 
-console.log(new Site({ name: "www.reddit.com" }))
-// Routes 
+// console.log(new Site({ name: "www.reddit.com" }))
+
+//  ------ Routes -------
 // @route GET /sites -> gets all users in the database
 
-// ----- Routes -----
-// @route GET /users -> gets all users in the database
 router.get('/', (req, response) => {
     Site.find()
         .then(sites => response.json(sites))
