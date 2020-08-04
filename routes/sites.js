@@ -11,7 +11,7 @@ const Site = require('../models/Site')
 router.get('/', async (req, res) => {
     try {
         const sites = await Site.find()
-        res.json()
+        res.send(sites)
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -19,14 +19,20 @@ router.get('/', async (req, res) => {
 
 // @route GET /sites/:id -> gets one site in the database
 router.get('/:id', getSite, (req, res) => {
-    res.send(req.site)
+    res.send(res.site)
 })
 
+// @route GET /sites/:id/articles -> gets all articles of a specific site
+
+router.get('/:id', getSite, (req, res) => {
+    res.send(res.site)
+})
 
 // @route POST /users -> adds new instance of a user to the database
 router.post('/', async (req, res) => {
     const site = new Site({
-        name: req.body.name
+        name: req.body.name,
+        url: req.body.url
     })
 
     try {

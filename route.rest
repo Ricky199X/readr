@@ -25,8 +25,8 @@ POST http://localhost:3000/users
 Content-type: application/json
 
 {
-    "userName": "Ricky",
-    "password": "password"
+    "userName": "new user",
+    "password": "password2"
 }
 
 ###
@@ -41,8 +41,11 @@ POST http://localhost:3000/sites
 Content-type: application/json
 
 {
-    "name": "www.androidcentral.com"
+    "name": "New Site",
+    "url": "www.newsite.com",
+    "articles": []
 }
 
-###
-GET http://localhost:3000/sites/5f29aa4eb04411f65eb0d589
+### -- sites/:id/articles not working!!!!!!!!
+GET http://localhost:3000/sites/5f29bd4b2313590a94b0e570/articles
+

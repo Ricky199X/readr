@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // create schema - this is an object literal
-// each article has an author, a title, a source, and a comments
+// each article has an author, a title, number of comments, and a source (the foreign key)
 
 const ArticleSchema = new Schema({
     title: {
@@ -13,13 +13,13 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    source: {
-        type: String,
-        required: true
-    },
     comments: {
         type: Number,
         required: true
+    },
+    _source: {
+        type: Schema.Types.ObjectId,
+        ref: 'Site'
     }
 })
 

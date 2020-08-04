@@ -8,8 +8,15 @@ const SiteSchema = new Schema({
     name: {
         type: String,
         required: true
+    },
+    url: {
+        type: String,
+        required: true
+    },
+    articles: {
+        type: Schema.Types.ObjectId, ref: 'Article'
     }
 })
 
 // need to export the model so that the database can have access to it 
-module.exports = Site = mongoose.model('site', SiteSchema)
+module.exports = mongoose.model('Site', SiteSchema)
