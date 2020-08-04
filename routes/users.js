@@ -17,8 +17,8 @@ router.get('/', async (req, res) => {
 })
 
 // @route GET /users/:id -> gets one user in the database
-router.get('/:id', (req, res) => {
-    res.send(req.params.id)
+router.get('/:id', getUser, (req, res) => {
+    res.send(res.user)
 })
 
 
@@ -37,5 +37,20 @@ router.post('/', async (req, res) => {
     }
 })
 
+
+// Middleware Function - get a user in database by ID
+async function getUser(req, res, next) {
+    let user
+    try {
+        user = await User.findById(req.params.id)
+        if (user == null) {
+            return res.status(404).json({ message: 'Cannot find that user!' })
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+    res.user = user
+    next()
+}
 
 module.exports = router

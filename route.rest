@@ -30,7 +30,7 @@ Content-type: application/json
 }
 
 ###
-GET http://localhost:3000/users/1
+GET http://localhost:3000/users/5f29a962122e1cf475b0ffdc
 
 ###
 
