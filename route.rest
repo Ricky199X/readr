@@ -1,0 +1,13 @@
+GET http://localhost:3000/articles
+
+###
+
+POST http://localhost:3000/articles
+Content-type: application/json
+
+{
+    "title": "pixel 5 !",
+    "author": "Ricky Rojas",
+    "source": "android central",
+    "comments": 10
+}

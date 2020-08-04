@@ -18,10 +18,10 @@ const ArticleSchema = new Schema({
         required: true
     },
     comments: {
-        type: String,
+        type: Number,
         required: true
     }
 })
 
 // need to export the model so that the database can have access to it 
-module.exports = Article = mongoose.model('article', ArticleSchema)
+module.exports = mongoose.model('Article', ArticleSchema)

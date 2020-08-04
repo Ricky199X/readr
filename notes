@@ -6,6 +6,6 @@ Command Line List
 
 Models 
 1. User (has many articles) - DONE
-2. User Article 
+2. User Article - 
 3. Article - DONE
 4. Site - DONE
