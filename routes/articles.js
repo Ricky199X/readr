@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
 })
 
 // @route GET /articles/:id -> gets one article in the database
-router.get('/:id', (req, res) => {
-    res.send(req.params.id)
+router.get('/:id', getArticle, (req, res) => {
+    res.send(res.article)
 })
 
 // @route POST /articles -> adds new instance of an article to the database
@@ -36,6 +36,22 @@ router.post('/', async (req, res) => {
         res.status(400).json({ message: err.message })
     }
 })
+
+
+// Middleware Function - get an article in database by ID
+async function getArticle(req, res, next) {
+    let article
+    try {
+        article = await Article.findById(req.params.id)
+        if (article == null) {
+            return res.status(404).json({ message: 'Cannot find that article!' })
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+    res.article = article
+    next()
+}
 
 
 module.exports = router

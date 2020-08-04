@@ -30,9 +30,9 @@ app.use(express.json())
 
 const articlesRouter = require('./routes/articles')
 const usersRouter = require('./routes/users')
-const sitessRouter = require('./routes/sites')
+const sitesRouter = require('./routes/sites')
 
-app.use('/sites', sitessRouter)
+app.use('/sites', sitesRouter)
 app.use('/users', usersRouter)
 app.use('/articles', articlesRouter)
 

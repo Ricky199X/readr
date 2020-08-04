@@ -2,6 +2,10 @@ GET http://localhost:3000/articles
 
 ###
 
+GET http://localhost:3000/articles/5f296c6ea897aba81c9880db
+
+###
+
 POST http://localhost:3000/articles
 Content-type: application/json
 
