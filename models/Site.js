@@ -1,15 +1,15 @@
-// const mongoose = require('mongoose')
-// const Schema = mongoose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-// // create schema - this is an object literal
-// // each site just has a name and many articles
+// create schema - this is an object literal
+// each site just has a name and many articles
 
-// const SiteSchema = new Schema({
-//     name: {
-//         type: String,
-//         required: true
-//     }
-// })
+const SiteSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    }
+})
 
-// // need to export the model so that the database can have access to it 
-// module.exports = Site = mongoose.model('site', SiteSchema)
+// need to export the model so that the database can have access to it 
+module.exports = Site = mongoose.model('site', SiteSchema)
