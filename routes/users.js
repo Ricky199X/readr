@@ -5,7 +5,6 @@ const router = express.Router()
 const User = require('../models/User')
 
 
-
 // ----- Routes -----
 // @route GET /users -> gets all users in the database
 router.get('/', async (req, res) => {

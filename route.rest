@@ -27,3 +27,18 @@ Content-type: application/json
 
 ###
 GET http://localhost:3000/users/1
+
+###
+
+GET http://localhost:3000/sites
+
+###
+POST http://localhost:3000/sites
+Content-type: application/json
+
+{
+    "name": "www.androidcentral.com"
+}
+
+###
+GET http://localhost:3000/sites/1
