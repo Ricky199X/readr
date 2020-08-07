@@ -17,10 +17,7 @@ const ArticleSchema = new Schema({
         type: Number,
         required: true
     },
-    _source: {
-        type: Schema.Types.ObjectId,
-        ref: 'Site'
-    }
+    source: [{ type: Schema.Types.ObjectId, ref: 'Site' }]
 })
 
 // need to export the model so that the database can have access to it 

@@ -13,9 +13,7 @@ const SiteSchema = new Schema({
         type: String,
         required: true
     },
-    articles: {
-        type: Schema.Types.ObjectId, ref: 'Article'
-    }
+    articles: [{ type: Schema.Types.ObjectId, ref: 'Article' }]
 })
 
 // need to export the model so that the database can have access to it 

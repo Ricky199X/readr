@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
         name: req.body.name,
         url: req.body.url
     })
-
+    console.log(req.body)
     try {
         const newSite = await site.save()
         res.status(201).json(newSite)
