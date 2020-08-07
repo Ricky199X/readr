@@ -12,7 +12,6 @@ Content-type: application/json
 {
     "title": "pixel 5 !",
     "author": "Ricky Rojas",
-    "source": "5f2d5d95507403e77675a1a0",
     "comments": 10
 }
 
@@ -42,8 +41,7 @@ Content-type: application/json
 
 {
     "name": "New Site",
-    "url": "www.newsite.com",
-    "articles": []
+    "url": "www.newsite.com"
 }
 
 ### -- sites/:id/articles not working!!!!!!!!

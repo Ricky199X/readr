@@ -25,8 +25,8 @@ router.post('/', async (req, res) => {
     const article = new Article({
         title: req.body.title,
         author: req.body.author,
-        comments: req.body.comments,
-        source: req.body.source,
+        comments: req.body.comments
+        // source: req.body.source,
     })
 
     try {
