@@ -13,7 +13,7 @@ const SiteSchema = new Schema({
         type: String,
         required: true
     },
-    articles: [{ type: Schema.Types.ObjectId, ref: 'article' }]
+    articles: []
 })
 
 
