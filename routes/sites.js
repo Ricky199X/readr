@@ -23,17 +23,18 @@ router.get('/:id', getSite, (req, res) => {
 })
 
 // @route GET /sites/:id/articles -> gets all articles of a specific site
-
-router.get('/:id/articles', getSite, (req, res) => {
+router.get('/:id/articles', async (req, res) => {
     console.log(req.params)
+    let site
+    let siteArticles
     try {
-        Site.findOne({ _id: req.params.id })
-            .then(site => site.articles)
-            .then(articles => res.json(articles))
+        site = await Site.findOne({ _id: req.params.id })
+        siteArticles = site.articles
+        res.send(siteArticles)
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
-    // res.send(res.site)
+
 })
 
 // @route POST /users -> adds new instance of a user to the database
