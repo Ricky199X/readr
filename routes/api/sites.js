@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 // User model
-const Site = require('../models/Site')
+const Site = require('../../models/Site')
 
 
 //  ------ Routes -------

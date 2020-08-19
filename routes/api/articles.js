@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Article = require('../models/Article')
+const Article = require('../../models/Article')
 
 //  ------ Routes -------
 // @route GET /articles -> gets all articles in the database
