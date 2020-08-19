@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-// User model
+// Site model
 const Site = require('../../models/Site')
 
 
@@ -17,31 +17,15 @@ router.get('/', async (req, res) => {
     }
 })
 
-// @route GET /sites/:id -> gets one site in the database
-router.get('/:id', getSite, (req, res) => {
-    res.send(res.site)
-})
-
-// @route GET /sites/:id/articles -> gets all articles of a specific site
-router.get('/:id/articles', async (req, res) => {
-    let site
-    let siteArticles
-    try {
-        site = await Site.findOne({ _id: req.params.id })
-        siteArticles = site.articles
-        res.send(siteArticles)
-    } catch (err) {
-        res.status(400).json({ message: err.message })
-    }
-
-})
-
-// @route POST /users -> adds new instance of a user to the database
+// @route POST /sites -> adds new site
+// Public
 router.post('/', async (req, res) => {
+
     const site = new Site({
         name: req.body.name,
         url: req.body.url
     })
+
     console.log(req.body)
     try {
         const newSite = await site.save()
@@ -51,20 +35,22 @@ router.post('/', async (req, res) => {
     }
 })
 
-// Middleware Function - get a site in database by ID
-async function getSite(req, res, next) {
-    let site
+// @route GET /sites/:id -> gets one site in the database
+// Public
+router.get('/:id', async (req, res) => {
     try {
-        site = await Site.findById(req.params.id)
-        if (site == null) {
-            return res.status(404).json({ message: 'Cannot find that site!' })
-        }
+        const site = await Site.findById(req.params.id)
+        res.json(site)
     } catch (err) {
-        return res.status(500).json({ message: err.message })
+        console.error(err.message)
+
+        if (err.kind == 'ObjectId') {
+            return res.status(400).json({ msg: `Site not found` })
+        }
+
+        res.status(500).send(`Server Err`)
     }
-    res.site = site
-    next()
-}
+})
 
 
 module.exports = router
