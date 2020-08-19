@@ -12,8 +12,7 @@ const SiteSchema = new Schema({
     url: {
         type: String,
         required: true
-    },
-    articles: []
+    }
 })
 
 

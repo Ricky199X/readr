@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
 // create schema - this is an object literal
 // each user has a username and password 
 
@@ -9,11 +8,20 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    password: {
+    email: {
         type: String,
         required: true
+    },
+    password: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 
 // need to export the model so that the database can have access to it 
-module.exports = User = mongoose.model('user', UserSchema)
+module.exports = mongoose.model('user', UserSchema)

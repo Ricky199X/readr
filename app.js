@@ -1,32 +1,18 @@
 const express = require('express')
-const dotenv = require('dotenv')
 const connectDB = require('./config/db')
-
-// Instantiate Morgan - this logs requests to the terminal (similar to rails)
-const morgan = require('morgan')
-
-// Load config.env file
-dotenv.config({ path: './config/config.env' })
-
-// initialize app with express 
 const app = express()
 
-
-// run Connect DB to connect to your host 
+// connect database
 connectDB()
 
-// if environment = development, run request logs
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'))
-}
+const PORT = process.env.PORT || 3000
 
-// We may deploy to heroku - so we need to set the env variable 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
 
+app.get('/', (req, res) => res.send('API Running'))
 
-// Routes
-app.use(express.json())
+//Init Middleware
+app.use(express.json({ extended: false }))
 
 const articlesRouter = require('./routes/articles')
 const usersRouter = require('./routes/users')

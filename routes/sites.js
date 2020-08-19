@@ -24,7 +24,6 @@ router.get('/:id', getSite, (req, res) => {
 
 // @route GET /sites/:id/articles -> gets all articles of a specific site
 router.get('/:id/articles', async (req, res) => {
-    console.log(req.params)
     let site
     let siteArticles
     try {
