@@ -15,44 +15,39 @@ router.get('/', async (req, res) => {
     }
 })
 
-// @route GET /articles/:id -> gets one article in the database
-router.get('/:id', getArticle, (req, res) => {
-    res.send(res.article)
-})
-
 // @route POST /articles -> adds new instance of an article to the database
 router.post('/', async (req, res) => {
     console.log(req.body)
     const article = new Article({
         title: req.body.title,
         author: req.body.author,
-        comments: req.body.comments,
-        source: req.body.source
+        comments: req.body.comments
     })
 
     try {
         const newArticle = await article.save()
         res.status(201).json(newArticle)
     } catch (err) {
+        console.error(err.message)
         res.status(400).json({ message: err.message })
     }
 })
 
-
-// Middleware Function - get an article in database by ID
-async function getArticle(req, res, next) {
-    let article
+// @route GET /articles/:id -> gets one article in the database
+router.get('/:id', async (req, res) => {
     try {
-        article = await Article.findById(req.params.id)
-        if (article == null) {
-            return res.status(404).json({ message: 'Cannot find that article!' })
-        }
+        const article = await Article.findById(req.params.id)
+        res.json(article)
     } catch (err) {
-        return res.status(500).json({ message: err.message })
+        console.error(err.message)
+
+        if (err.kind == 'ObjectId') {
+            return res.status(400).json({ msg: `Article not found` })
+        }
+
+        res.status(500).send(`Server Err`)
     }
-    res.article = article
-    next()
-}
+})
 
 
 module.exports = router

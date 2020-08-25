@@ -18,8 +18,8 @@ const ArticleSchema = new Schema({
         required: true
     },
     source: {
-        type: Schema.Types.ObjectId,
-        ref: 'site'
+        type: String,
+        required: true
     }
 })
 
