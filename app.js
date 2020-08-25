@@ -14,9 +14,9 @@ app.get('/', (req, res) => res.send('API Running'))
 //Init Middleware
 app.use(express.json({ extended: false }))
 
-app.use('/api/sites', require('./routes/api/sites'))
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/articles', require('./routes/api/articles'))
+app.use('/api/auth', require('./routes/api/auth'))
 
 
 
