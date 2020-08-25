@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 // each user has a username and password 
 
 const UserSchema = new Schema({
-    userName: {
+    name: {
         type: String,
         required: true
     },

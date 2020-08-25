@@ -1,4 +1,5 @@
 {
     "mongoURI": "mongodb+srv://Ricky:Nelson19!@readr.s99uq.mongodb.net/readr?retryWrites=true&w=majority",
-    "newsApiKey": "63c967f7cbd84c11b263b4e4758f1693"
+    "newsApiKey": "63c967f7cbd84c11b263b4e4758f1693",
+    "jwtSecret": "mysecrettoken"
 }
