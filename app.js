@@ -17,6 +17,7 @@ app.use(express.json({ extended: false }))
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/articles', require('./routes/api/articles'))
 app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api/favorites', require('./routes/api/favorites'))
 
 
 
