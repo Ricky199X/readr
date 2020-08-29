@@ -17,3 +17,14 @@ Site: has many articles
 Article: has one site 
 Article: has many users
 User: has many articles 
+
+
+To-Do List 
+1. Favorites Schema 
+    - user: type reference to User Schema
+    - favoriteList: type needs to be an Array (array will contain article objects)
+
+2. Favorites routes 
+    - GET all favorites
+    - POST an article to favorites by :id 
+    - DELETE a favorite by :id 
