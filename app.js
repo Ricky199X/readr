@@ -1,6 +1,7 @@
 const express = require('express')
 const connectDB = require('./config/db')
 const app = express()
+const scraper = require('./scraper')
 
 // connect database
 connectDB()

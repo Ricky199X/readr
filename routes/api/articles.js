@@ -1,47 +1,7 @@
 const express = require('express')
 const router = express.Router()
-// News API
-const NewsAPI = require('newsapi')
-const newsapi = new NewsAPI('63c967f7cbd84c11b263b4e4758f1693')
 
 const Article = require('../../models/Article')
-
-
-// GET all entertainment articles 
-newsapi.v2.topHeadlines({
-    category: 'entertainment',
-    country: 'us'
-}).then(response => {
-    const entertainmentArticles = response
-    return entertainmentArticles
-}).catch(error =>
-    console.error(error.message)
-)
-
-// GET technology top headlines 
-newsapi.v2.topHeadlines({
-    category: 'technology',
-    country: 'us'
-}).then(response => {
-    const techArticles = response
-    return techArticles
-}).catch(error =>
-    console.error(error.message)
-)
-
-
-// GET sports top headlines 
-newsapi.v2.topHeadlines({
-    category: 'sports',
-    country: 'us'
-}).then(response => {
-    const sportsArticles = response
-    console.log(sportsArticles.articles[1].source.name)
-    return sportsArticles
-}).catch(error =>
-    console.error(error.message)
-)
-
 
 //  ------ Routes -------
 // @route GET /articles -> gets all articles in the database
@@ -55,12 +15,16 @@ newsapi.v2.topHeadlines({
 //     }
 // })
 
-// // @route POST /articles -> adds new instance of an article to the database
+// @route POST /articles -> adds new instance of an article to the database
 // router.post('/', async (req, res) => {
 //     console.log(req.body)
 //     const article = new Article({
 //         title: req.body.title,
 //         author: req.body.author,
+//         description: req.body.description,
+//         url: req.body.url,
+//         datePublished: req.body.datePublished,
+//         source: req.body.source,
 //         comments: req.body.comments
 //     })
 
