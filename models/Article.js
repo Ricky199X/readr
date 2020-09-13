@@ -13,8 +13,16 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    comments: {
-        type: Number,
+    description: {
+        type: String,
+        required: true
+    },
+    url: {
+        type: String,
+        required: true
+    },
+    datePublished: {
+        type: String,
         required: true
     },
     source: {

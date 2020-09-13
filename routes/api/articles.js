@@ -36,6 +36,7 @@ newsapi.v2.topHeadlines({
     country: 'us'
 }).then(response => {
     const sportsArticles = response
+    console.log(sportsArticles.articles[1].source.name)
     return sportsArticles
 }).catch(error =>
     console.error(error.message)
