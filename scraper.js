@@ -1,10 +1,11 @@
+// const { get } = require('config');
 // News API
 const NewsAPI = require('newsapi')
 const newsapi = new NewsAPI('63c967f7cbd84c11b263b4e4758f1693')
 
 class EntertainmentArticles {
     constructor() {
-        this.articles = {};
+        this.articles = {}
     }
 }
 
@@ -21,14 +22,18 @@ class TechnologyArticles {
 }
 
 // GET all entertainment articles 
+
 newsapi.v2.topHeadlines({
     category: 'entertainment',
     country: 'us'
 }).then(async response => {
-    EntertainmentArticles.articles = response
+    const entertainmentArticles = response
+    EntertainmentArticles.articles = entertainmentArticles
+    // console.log(EntertainmentArticles.articles)
 }).catch(error =>
     console.error(error.message)
 )
+
 
 // GET technology top headlines 
 newsapi.v2.topHeadlines({
@@ -36,6 +41,7 @@ newsapi.v2.topHeadlines({
     country: 'us'
 }).then(response => {
     TechnologyArticles.articles = response
+    // console.log(TechnologyArticles.articles)
 }).catch(error =>
     console.error(error.message)
 )
@@ -46,10 +52,11 @@ newsapi.v2.topHeadlines({
     country: 'us'
 }).then(response => {
     SportsArticles.articles = response
-    console.log(SportsArticles.articles)
 }).catch(error =>
     console.error(error.message)
 )
 
-
-module.exports = 'scraper'
+module.exports = { EntertainmentArticles }
+// module.exports = {
+//     entertainmentArticles: this.EntertainmentArticles
+// }

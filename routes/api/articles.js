@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const fetch = require('node-fetch')
 
-// // News API
-// const NewsAPI = require('newsapi')
-// const newsapi = new NewsAPI('63c967f7cbd84c11b263b4e4758f1693')
 
 const Article = require('../../models/Article')
+
+const { EntertainmentArticles } = require('../../scraper')
+const entertainmentInstance = new EntertainmentArticles()
+console.log(entertainmentInstance)
+
 
 //  ------ Routes -------
 // @route GET /articles -> gets all articles in the database

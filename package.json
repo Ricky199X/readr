@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production nodemon app",
-    "server": "NODE_ENV=development nodemon app"
+    "server": "NODE_ENV=development nodemon app",
+    "type": "module"
   },
   "author": "Ricky Rojas",
   "license": "MIT",
