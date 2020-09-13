@@ -1,25 +1,46 @@
 const express = require('express')
 const router = express.Router()
-const axios = require('axios')
 // News API
 const NewsAPI = require('newsapi')
 const newsapi = new NewsAPI('63c967f7cbd84c11b263b4e4758f1693')
 
 const Article = require('../../models/Article')
 
+
+// GET all entertainment articles 
 newsapi.v2.topHeadlines({
-    category: 'technology',
-    source: 'the-verge',
+    category: 'entertainment',
     country: 'us'
 }).then(response => {
-    console.log(response);
-    /*
-      {
-        status: "ok",
-        articles: [...]
-      }
-    */
-});
+    const entertainmentArticles = response
+    return entertainmentArticles
+}).catch(error =>
+    console.error(error.message)
+)
+
+// GET technology top headlines 
+newsapi.v2.topHeadlines({
+    category: 'technology',
+    country: 'us'
+}).then(response => {
+    const techArticles = response
+    return techArticles
+}).catch(error =>
+    console.error(error.message)
+)
+
+
+// GET sports top headlines 
+newsapi.v2.topHeadlines({
+    category: 'sports',
+    country: 'us'
+}).then(response => {
+    const sportsArticles = response
+    return sportsArticles
+}).catch(error =>
+    console.error(error.message)
+)
+
 
 //  ------ Routes -------
 // @route GET /articles -> gets all articles in the database
