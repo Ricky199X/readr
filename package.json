@@ -10,6 +10,7 @@
   "author": "Ricky Rojas",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
@@ -25,6 +26,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^5.9.26",
     "morgan": "^1.10.0",
+    "newsapi": "^2.4.1",
     "passport": "^0.4.1"
   },
   "devDependencies": {
