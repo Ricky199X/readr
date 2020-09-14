@@ -1,11 +1,12 @@
 // const { get } = require('config');
+const fetch = require('node-fetch')
 // News API
 const NewsAPI = require('newsapi')
 const newsapi = new NewsAPI('63c967f7cbd84c11b263b4e4758f1693')
 
 class EntertainmentArticles {
     constructor() {
-        this.articles = {}
+        this.articles = []
     }
 }
 
@@ -23,16 +24,31 @@ class TechnologyArticles {
 
 // GET all entertainment articles 
 
-newsapi.v2.topHeadlines({
-    category: 'entertainment',
-    country: 'us'
-}).then(async response => {
-    const entertainmentArticles = response
-    EntertainmentArticles.articles = entertainmentArticles
-    // console.log(EntertainmentArticles.articles)
-}).catch(error =>
-    console.error(error.message)
-)
+
+
+// const promise = fetch()
+//     .then(response => response.json())
+//     .then(json => json)
+//     .catch(error => console.message(error))
+
+const fetchEntertainmentHeadlines = async () => {
+
+    try {
+        const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=63c967f7cbd84c11b263b4e4758f1693');
+        const data = await res.json();
+
+        console.log(`Found ${data.totalResults} articles`);
+
+        const entertainment = new EntertainmentArticles()
+        entertainment.articles = data.articles
+        console.log(entertainment)
+
+    } catch (error) {
+        console.log(`Bad API call!`)
+    }
+};
+
+// console.log(data)
 
 
 // GET technology top headlines 
@@ -56,7 +72,4 @@ newsapi.v2.topHeadlines({
     console.error(error.message)
 )
 
-module.exports = { EntertainmentArticles }
-// module.exports = {
-//     entertainmentArticles: this.EntertainmentArticles
-// }
+module.exports = { EntertainmentArticles, fetchEntertainmentHeadlines }

@@ -1,12 +1,10 @@
 const express = require('express')
 const router = express.Router()
-
-
 const Article = require('../../models/Article')
+const { fetchEntertainmentHeadlines } = require('../../scraper')
 
-const { EntertainmentArticles } = require('../../scraper')
-const entertainmentInstance = new EntertainmentArticles()
-console.log(entertainmentInstance)
+fetchEntertainmentHeadlines()
+
 
 
 //  ------ Routes -------
