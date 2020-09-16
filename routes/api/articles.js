@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Article = require('../../models/Article')
-const { fetchEntertainmentHeadlines } = require('../../scraper')
+const fetch = require('node-fetch')
+// const { fetchEntertainmentHeadlines } = require('../../scraper')
 
-fetchEntertainmentHeadlines()
+// fetchEntertainmentHeadlines()
 
 
 
@@ -20,26 +21,34 @@ fetchEntertainmentHeadlines()
 // })
 
 // @route POST /articles -> adds new instance of an article to the database
-// router.post('/', async (req, res) => {
-//     console.log(req.body)
-//     const article = new Article({
-//         title: req.body.title,
-//         author: req.body.author,
-//         description: req.body.description,
-//         url: req.body.url,
-//         datePublished: req.body.datePublished,
-//         source: req.body.source,
-//         comments: req.body.comments
-//     })
+router.post('/', async (req, res) => {
+    console.log(req.body)
+    try {
+        const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=63c967f7cbd84c11b263b4e4758f1693');
+        const data = await res.json();
 
-//     try {
-//         const newArticle = await article.save()
-//         res.status(201).json(newArticle)
-//     } catch (err) {
-//         console.error(err.message)
-//         res.status(400).json({ message: err.message })
-//     }
-// })
+        // need to mapp thru the data, make every article with the parameters defined for an article=
+        data.articles.forEach(article => {
+            const storyData = {
+                title: article.title,
+                author: article.author,
+                description: article.description,
+                url: article.url,
+                datePublished: article.publishedAt,
+                source: article.source.name
+            }
+            console.log(storyData)
+            // new Article(storyData)
+            //     .save()
+            // const newArticle = story.save()
+            // res.send(newArticle)
+            // res.status(201).json(newArticle)
+        })
+    } catch (err) {
+        console.error(err.message)
+        res.status(400).json({ message: err.message })
+    }
+})
 
 // // @route GET /articles/:id -> gets one article in the database
 // router.get('/:id', async (req, res) => {

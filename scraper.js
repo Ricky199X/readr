@@ -31,22 +31,22 @@ class TechnologyArticles {
 //     .then(json => json)
 //     .catch(error => console.message(error))
 
-const fetchEntertainmentHeadlines = async () => {
+// const fetchEntertainmentHeadlines = async () => {
 
-    try {
-        const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=63c967f7cbd84c11b263b4e4758f1693');
-        const data = await res.json();
+//     try {
+//         const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=63c967f7cbd84c11b263b4e4758f1693');
+//         const data = await res.json();
 
-        console.log(`Found ${data.totalResults} articles`);
+//         console.log(`Found ${data.totalResults} articles`);
 
-        const entertainment = new EntertainmentArticles()
-        entertainment.articles = data.articles
-        console.log(entertainment)
+//         const entertainment = new EntertainmentArticles()
+//         entertainment.articles = data.articles
+//         console.log(entertainment)
 
-    } catch (error) {
-        console.log(`Bad API call!`)
-    }
-};
+//     } catch (error) {
+//         console.log(`Bad API call!`)
+//     }
+// };
 
 // console.log(data)
 
@@ -72,4 +72,5 @@ newsapi.v2.topHeadlines({
     console.error(error.message)
 )
 
-module.exports = { EntertainmentArticles, fetchEntertainmentHeadlines }
+module.exports = { EntertainmentArticles }
+// , fetchEntertainmentHeadlines
