@@ -22,27 +22,59 @@ const fetch = require('node-fetch')
 
 // @route POST /articles -> adds new instance of an article to the database
 router.post('/', async (req, res) => {
-    console.log(req.body)
-    try {
-        const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=63c967f7cbd84c11b263b4e4758f1693');
-        const data = await res.json();
+    // try {
+    //     const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=63c967f7cbd84c11b263b4e4758f1693');
+    //     const data = await res.json();
 
-        // need to mapp thru the data, make every article with the parameters defined for an article=
-        data.articles.forEach(article => {
-            const storyData = {
+    //     // // need to map thru the data, make every article with the parameters defined for an article
+    //     // data.articles.forEach(article => {
+    //     //     const storyData = {
+    //     //         title: article.title,
+    //     //         author: article.author,
+    //     //         description: article.description,
+    //     //         url: article.url,
+    //     //         datePublished: article.publishedAt,
+    //     //         source: article.source.name
+    //     //     }
+    //     //     // console.log(storyData)
+
+    //     //     new Article(storyData)
+    //     //         .save()
+    //     // })
+    // } catch (err) {
+    //     console.error(err.message)
+    //     res.status(400).json({ message: err.message })
+    // }
+
+    const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=63c967f7cbd84c11b263b4e4758f1693');
+    const data = await response.json()
+
+    const articles = data.articles.map(article => {
+        let storyData = {
+            title: article.title,
+            author: article.author,
+            description: article.description,
+            url: article.url,
+            datePublished: article.publishedAt,
+            source: article.source.name
+        }
+        return storyData
+    })
+    console.log(articles)
+
+    try {
+        articles.forEach(article => {
+            const newArticle = new Article({
                 title: article.title,
-                author: article.author,
-                description: article.description,
-                url: article.url,
-                datePublished: article.publishedAt,
-                source: article.source.name
-            }
-            console.log(storyData)
-            // new Article(storyData)
-            //     .save()
-            // const newArticle = story.save()
-            // res.send(newArticle)
-            // res.status(201).json(newArticle)
+                author: req.body.author,
+                description: req.body.description,
+                url: req.body.url,
+                datePublished: req.body.publishedAt,
+                source: req.body.source
+            })
+
+            const story = newArticle.save()
+            res.json(story)
         })
     } catch (err) {
         console.error(err.message)
